@@ -1,0 +1,37 @@
+[
+    {
+        "id": "article one",
+        "writter": "Author: Ali",
+        "article_section": "Category: Science",
+        "title": "Title 1",
+        "article": "Article Number 1 Body"
+    },
+    {
+        "id": "article two",
+        "writter": "Author: Mahmoud",
+        "article_section": "Category: Science",
+        "title": "Title 2",
+        "article": "Article Number 2 Body"
+    },
+    {
+        "id": "article three",
+        "writter": "Author: Osama",
+        "article_section": "Category: Science",
+        "title": "Title 3",
+        "article": "Article Number 3 Body"
+    },
+    {
+        "id": "article four",
+        "writter": "Author: Sayed",
+        "article_section": "Category: Science",
+        "title": "Title 4",
+        "article": "Article Number 4 Body"
+    },
+    {
+        "id": "article five",
+        "writter": "Author: Ahmed",
+        "article_section": "Category: Science",
+        "title": "Title 5",
+        "article": "Article Number 5 Body"
+    }
+    ]

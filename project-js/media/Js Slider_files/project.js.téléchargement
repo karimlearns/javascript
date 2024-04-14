@@ -1,0 +1,519 @@
+// // Get Slider Items | Array.from [ES6 Feature]
+// let slideImages = Array.from(document.querySelectorAll('.slider-container img'));
+
+// // Get Number Of Slides
+// let slideCount = slideImages.length;
+
+// // Set Current Slide
+// let currentSlide = 1;
+
+// // Slide Number String Element
+// let slideNumberElement = document.getElementById('slide-number');
+
+// // Previous and Next Button
+// let nextButton = document.getElementById('next');
+// let prevButton = document.getElementById('prev');
+
+// // Handle Click on Previous and Next Buttons
+// nextButton.onclick = nextSlide;
+// prevButton.onclick = prevSlide;
+
+// // Create The Main Ul Element
+// let paginationElement = document.createElement('ul');
+
+// // Set ID On Created Ul Element
+// paginationElement.setAttribute('id', 'pagination-ul');
+
+// // Create List Items Based Slides Count
+// for (let i = 1; i <= slideCount; i++) {
+//     // Create The LI
+//     let paginationItem = document.createElement('li');
+
+//     // Set Custon Attribute
+//     paginationItem.setAttribute('data-index', i);
+
+//     // Set Item Content
+//     paginationItem.appendChild(document.createTextNode(i));
+
+//     // Append Items to The Main Ul List
+//     paginationElement.appendChild(paginationItem);
+// }
+
+// document.getElementById('indicators').appendChild(paginationElement);
+
+// // Get The New Created UL
+// let paginationCreatedUl = document.getElementById('pagination-ul');
+
+// // Get Padination Items | Array.from [ES6 Feature]
+// let PaginationBullets = Array.from(document.querySelectorAll('#pagination-ul li'));
+
+// // Loop Through All Bullets Items
+// for (let i = 0; i < PaginationBullets.length; i++) {
+//     PaginationBullets[i].onclick = function () {
+//         currentSlide = parseInt(this.getAttribute('data-index'));
+//         theChecker();
+//     }
+// }
+
+// // Trigger The Checker Function
+// theChecker()
+
+// // Next Slide Function
+// function nextSlide() {
+//     if (nextButton.classList.contains('disabled')) {
+//         // Do Nothing
+//         return false
+//     } else {
+//         currentSlide++;
+//         theChecker();
+//     }
+// }
+
+// // Previous Slide Function
+// function prevSlide() {
+//     if (prevButton.classList.contains('disabled')) {
+//         // Do Nothing
+//         return false
+//     } else {
+//         currentSlide--;
+//         theChecker();
+//     }
+// }
+
+// // Create The Cheacker Function
+// function theChecker() {
+
+// }
+
+// // Create The Checker Function
+// function theChecker() {
+//     // Set The Slide Number
+//     slideNumberElement.textContent = 'Slide #' + (currentSlide) + ' Of ' + (slideCount);
+
+//     // Remove All Active Classes
+//     removeAllActive()
+
+//     // Set Active Class On Current Slide
+//     slideImages[currentSlide - 1].classList.add('active');
+
+//     // Set Active Class on Current Pagination Item
+//     paginationCreatedUl.children[currentSlide - 1].classList.add('active');
+
+//     // Cheack If Current Slide Is The First
+//     if (currentSlide == 1) {
+//         // Add Disabled Class on Previous Button
+//         prevButton.classList.add('disabled');
+//     } else {
+//         // Remove Disabled Class From Previous Button
+//         prevButton.classList.remove('disabled');
+//     }
+
+//     // Cheack If Current Slide Is The Last
+//     if (currentSlide == slideCount) {
+//         // Add Disabled Class on Next Button
+//         nextButton.classList.add('disabled');
+//     } else {
+//         // Remove Disabled Class From Next Button
+//         nextButton.classList.remove('disabled');
+//     }
+// };
+
+// // Remove All Acive Classes From Images and Pagination Bullets
+// function removeAllActive() {
+//     // Loop Through Images
+//     slideImages.forEach(function (img) {
+//         img.classList.remove('active');
+//     });
+
+//     // Loop Through Pagination Bullets
+//     PaginationBullets.forEach(function (bullet) {
+//         bullet.classList.remove('active')
+//     });
+// }
+// --------------------------------------------------------------
+//////////////////////////
+// Create Memory Game ////
+//////////////////////////
+// // Select The Start Game Button
+// document.querySelector('.control-buttons span').onclick = function () {
+
+//     // Prompt Window To Ask For Name
+//     let yourName = prompt('Whats Your Name');
+
+//     // If Name Is Empty
+//     if (yourName == null || yourName == '') {
+
+//         // Set Name To Unknown
+//         document.querySelector('.name span').innerHTML = 'unknown';
+
+//         // Name Is Not Empty
+//     } else {
+
+//         // Set Name To Your Name
+//         document.querySelector('.name span').innerHTML = yourName;
+//     }
+
+//     // Remove Splash Screen
+//     document.querySelector('.control-buttons').remove();
+// }
+
+// // Effect Duration
+// let duration = 1000;
+
+// // Select Blocks Container
+// let blocksContainer = document.querySelector('.memory-game-blocks');
+
+// // Create Array From Game Blocks
+// let blocks = Array.from(blocksContainer.children);
+
+// // Create Range Of Keys
+// let orderRange = [...Array(blocks.length).keys()]
+// shuffle(orderRange)
+
+// // Add Order Css Property To Game Blocks
+// blocks.forEach((block, index) => {
+
+//     // Add Css Order Property
+//     block.style.order = orderRange[index];
+
+//     // Add Click Event
+//     block.addEventListener("click", function () {
+//         // Trigger The Flip Block Function
+//         flipBlock(block)
+//     })
+// });
+
+// // Flip Block Function
+// function flipBlock(selectedBlock) {
+//     // Add Clas Is-flipped
+//     selectedBlock.classList.add('is-flipped');
+
+//     // Collected All Flipped Card
+//     let AllFlippedBlocks = blocks.filter(flipBlock => flipBlock.classList.contains('is-flipped'));
+
+//     // If there is Two Selected Blocks
+//     if (AllFlippedBlocks.length === 2) {
+
+//         // Stop Clicking Function
+//         stopClicking()
+
+//         // Check Matched Block Function
+//         checkMatchedBlock(AllFlippedBlocks[0], AllFlippedBlocks[1]);
+//     }
+// }
+
+// // Check Matched Block
+// function checkMatchedBlock(firstBlock, secondBlock) {
+//     let triesElement = document.querySelector('.tries span');
+
+//     if (firstBlock.dataset.game === secondBlock.dataset.game) {
+
+//         firstBlock.classList.remove('is-flipped');
+//         secondBlock.classList.remove('is-flipped');
+
+//         firstBlock.classList.add('has-match');
+//         secondBlock.classList.add('has-match');
+
+//         document.getElementById('success').play();
+
+//     } else {
+//         triesElement.innerHTML = parseInt(triesElement.innerHTML) + 1;
+
+//         setTimeout(() => {
+
+//             firstBlock.classList.remove('is-flipped');
+//             secondBlock.classList.remove('is-flipped');
+
+//         }, duration);
+
+//         document.getElementById('fail').play();
+//     }
+// }
+
+
+
+// // Shuffle Function
+// function stopClicking() {
+//     // Add Class No Clicking on main Container
+//     blocksContainer.classList.add('no-clicking');
+
+//     setTimeout(() => {
+//         //Remove Class No Clicking After The Duration
+//         blocksContainer.classList.remove('no-clicking');
+//     }, duration);
+// }
+
+// // Shuffle Function
+
+// function shuffle(array) {
+
+//     // Setting Vars
+//     let current = array.length,
+//         temp,
+//         random;
+
+//     while (current > 0) {
+
+//         // Get Random Number
+//         random = Math.floor(Math.random() * current);
+
+//         // Decrease Length By One
+//         current--;
+
+//         // [1] Save Current Element In Stash
+//         temp = array[current];
+
+//         // [2] Current Element = Random Element
+//         array[current] = array[random];
+
+//         // [3] Random Element = Get Element From Stash
+//         array[random] = temp;
+//     }
+//     return array;
+// }
+// ------------------------------------------------------------------------------------------
+
+////////////////////////////
+//       Slide Copie    //
+//////////////////////////
+// let arrImg = Array.from(document.querySelectorAll('img'));
+
+// let imgLength = arrImg.length;
+
+// let currentSlide = 1;
+
+// let slide = document.querySelector('.slide');
+
+// let slideNum = document.querySelector("span.num");
+
+// let prev = document.querySelector('.prev');
+// let next = document.querySelector('.next');
+
+// prev.onclick = nextButton;
+// next.onclick = prevButton;
+
+// let numsUl = document.createElement('ul');
+// numsUl.setAttribute('id', 'num-ul')
+
+// let ulElement = slideNum.appendChild(numsUl);
+
+// for (let i = 0; i < arrImg.length; i++) {
+
+//     let numsLi = document.createElement('li');
+
+//     const textNode = document.createTextNode(i + 1);
+
+//     numsLi.appendChild(textNode);
+
+//     numsUl.appendChild(numsLi);
+// };
+
+// let getUl = document.getElementById('num-ul');
+
+// let lis = Array.from(document.querySelectorAll('#num-ul li'));
+
+// theChecker();
+
+// function nextButton() {
+
+//     currentSlide++;
+//     theChecker()
+// }
+
+// function prevButton() {
+//     console.log('hi')
+// }
+
+// function theChecker() {
+//     slide.textContent = 'Slide #' + (currentSlide) + ' of ' + (imgLength);
+
+//     // removeAllActive()
+
+//     arrImg[currentSlide - 1].classList.add('active');
+
+//     getUl.children[currentSlide - 1].classList.add('active');
+
+//     if (currentSlide === 1) {
+//         prev.classList.add('disabled');
+//     } else {
+//         prev.classList.remove('disabled');
+//     }
+
+//     if (currentSlide >= arrImg.length) {
+//         next.classList.add('disabled');
+//     } else {
+//         next.classList.remove('disabled');
+//     }
+// }
+
+// function removeAllActive() {
+
+//     arrImg.forEach(img => {
+//         img.classList.remove('active');
+
+//     });
+
+//     lis.forEach(nums => {
+//         nums.classList.remove('active')
+//     });
+// }
+// -----------------------------------------------------------------------------------------------------------------------------------
+
+////////////////////////////
+//      Game Copie       //
+//////////////////////////
+
+// let container = document.querySelector('.container');
+// let nom = document.querySelector('.name');
+
+// container.onclick = hi;
+// function hi() {
+//     let prmp = prompt("Please enter your name", '');
+
+//     if (prmp.length > 0 || prmp !== null) {
+//         nom.textContent = prmp;
+//     } else {
+//         nom.textContent = 'unknown';
+//     }
+
+//     nom.remove()
+// }
+
+// console.log(Math.floor(Math.random() * 20));
+// --------------------------------------------------------------------------------------------------------------------------------
+
+////////////////////////////
+//      Game Copie       //
+//////////////////////////
+
+/*
+    Students Tasks:
+    [1] Use Sweet Alert If input Is Empty
+    [2] Chek If Tasks Is Exist
+    [3] Create Delete All Tasks Button
+    [4] Create Finish All Tasks Button
+    [5] Add Tasks To Local Storage
+*/
+
+// Setting Up Varaiables
+let theInput = document.querySelector('.add-task input');
+let theAddButton = document.querySelector('.add-task .plus');
+let tasksContainer = document.querySelector('.tasks-content');
+let tasksCount = document.querySelector('.tasks-count span');
+let tasksCompleted = document.querySelector('.tasks-completed span');
+
+// Focus On Input Field
+window.onload = function () {
+    theInput.focus();
+};
+
+// Adding The Task
+theAddButton.onclick = function () {
+
+    // If Input Is Empty
+    if (theInput.value === '') {
+
+        console.log('No Value')
+
+    } else {
+
+        let noTasksMsg = document.querySelector('.no-tasks-message');
+
+        if (document.body.contains(document.querySelector('.no-tasks-message'))) {
+            // Remove No Tasks Message
+            noTasksMsg.remove();
+        }
+
+        // let Create Span Main Element
+        let mainspan = document.createElement('span');
+
+        // Create Delete Button
+        let deleteElement = document.createElement('span');
+
+        // Create The Main Span Text
+        let text = document.createTextNode(theInput.value);
+
+        // Create The Delete Button Text
+        let deleteText = document.createTextNode('Delete');
+
+        // Add Text To Main Span
+        mainspan.appendChild(text);
+
+        // Add Class to Main Span
+        mainspan.className = 'task-box';
+
+        // Add Text To Delete Button
+        deleteElement.appendChild(deleteText);
+
+        // Add Class To Delete Button
+        deleteElement.className = 'delete';
+
+        // Add Delete Button to Main Span
+        mainspan.appendChild(deleteElement);
+
+        // Add The Task to The Container
+        tasksContainer.appendChild(mainspan);
+
+        // Calculate Tasks
+        calculateTasks();
+
+    }
+};
+
+document.addEventListener('click', function (e) {
+
+    // Delete task
+    if (e.target.className == 'delete') {
+
+        // Remove Current Task
+        e.target.parentNode.remove();
+
+        // Check Number Of Tasks Inside The Container
+        if (tasksContainer.childElementCount == 0) {
+
+            createNoTasks()
+
+        }
+    }
+    // Finish Task
+    if (e.target.classList.contains('task-box')) {
+
+        // toggle Class 'Finished'
+        e.target.classList.toggle('finished')
+    }
+
+    // Calculate Tasks
+    calculateTasks();
+})
+
+// Function To Create No Tasks Message
+function createNoTasks() {
+
+    // Create Message Span Element
+    let msgSpan = document.createElement('span');
+
+    // Create The Text Message
+    let msgText = document.createTextNode(('No Tasks To Show'));
+
+    // Add Text To Message Span Element
+    msgSpan.appendChild(msgText);
+
+    // Add Text To Message Span
+    msgSpan.className = 'no-tasks-message';
+
+    // Append The Message Span Element To The Task Container
+    tasksContainer.appendChild(msgSpan);
+
+}
+
+// Function To Calculate Tasks
+function calculateTasks() {
+
+    // Calculate All Tasks
+    tasksCount.innerHTML = document.querySelectorAll('.tasks-content .task-box').length;
+
+    // Calculate Completed Tasks
+    tasksCompleted.innerHTML = document.querySelectorAll('.tasks-content .finished').length;
+
+
+}
